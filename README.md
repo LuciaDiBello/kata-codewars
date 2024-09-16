@@ -1,1 +1,1 @@
-# findNextSquare
+# kata-codewars
