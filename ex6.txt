@@ -1,0 +1,46 @@
+//Create a function that takes a number and returns an array of strings containing the number cut off at each digit.
+//Examples
+//420 should return ["4", "42", "420"]
+//2017 should return ["2", "20", "201", "2017"]
+//2010 should return ["2", "20", "201", "2010"]
+//4020 should return ["4", "40", "402", "4020"]
+//80200 should return ["8", "80", "802", "8020", "80200"]
+//PS: The input is guaranteed to be an integer in the range [0, 1.000.000]
+
+
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		int n;
+		int[] vetCifreInv = new int[7];
+		String[] vetNcutoff = new String[7];
+		
+		Scanner input = new Scanner(System.in);
+		do {
+			System.out.println("inserire un numero non negativo, (max 1.000.000)");
+			n = input.nextInt();
+		   } while (n < 0 || n > 1000000);
+
+		int r;
+		int i = 0;
+		while (n >= 1) {
+			r = n % 10;
+			vetCifreInv[i] = r;
+			n = (n - r)/10;	
+			i++;
+		   }
+		
+		for (int j = i-1; j >= 0; j--)
+			 for (int k=i-1-j; k<i; k++)
+				 if (j == i-1)
+					 vetNcutoff[k]= Integer.toString(vetCifreInv[j]);	
+				 else
+					 vetNcutoff[k]=vetNcutoff[k]+vetCifreInv[j];	
+		for (int j=0; j<i; j++)
+			System.out.println(vetNcutoff[j]);
+		
+    }
+}

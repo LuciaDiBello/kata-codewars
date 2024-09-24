@@ -1,0 +1,35 @@
+//I will give you an integer. 
+//Give me back a shape that is as long and wide as the integer. 
+//The integer will be a whole number between 1 and 50.
+//Example
+//n = 3, so I expect a 3x3 square back just like below as a string:
+//+++
+//+++
+//+++
+
+import java.util.Scanner;
+
+public class ex5 {
+	
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner(System.in);
+		int l;
+		do {
+			System.out.println("inserire la dimensione del quadrato, (max 50)");
+			l = input.nextInt();
+		} while (l <= 0 || l > 50);
+	    
+		String s1 = "\n";
+		for (int i = 0; i<l; i++){ 
+			for(int j = 0; j<l; j++) 
+				s1 = s1 + "+"; 
+			s1 = s1 + "\n";
+			}
+		String s2 = s1.substring(1, s1.length());
+		System.out.println(s2);
+       }	
+}
+
+	
+

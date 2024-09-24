@@ -1,0 +1,91 @@
+//Your job is to create a class called Song.
+//A new Song will take two parameters, title and artist. 
+//Song mountMoose = new Song("Mount Moose", "The Snazzy Moose"); 
+//mountMoose.getTitle() => "Mount Moose";
+//mountMoose.getArtist() => "The Snazzy Moose";
+
+//You will also have to create an instance method named howMany() (or how_many()).
+//The method takes an array of people who have listened to the song that day. 
+//The output should be how many new listeners the song gained on that day out of all listeners. 
+//Names should be treated in a case-insensitive manner, i.e. "John" is the same as "john".
+
+//Example
+//Song mountMoose = new Song("Mount Moose", "The Snazzy Moose");
+
+// day 1 (or test 1)
+//mountMoose.howMany(new ArrayList<String>(Arrays.asList("John", "Fred", "BOb", "carl", "RyAn"))); => 5
+// These are all new since they are the first listeners.
+
+// day 2
+//mountMoose.howMany(new ArrayList<String>(Arrays.asList("JoHn", "Luke", "AmAndA"))); => 2
+// Luke and Amanda are new, john already listened to it the previous day
+
+//Also if the same person listened to it more than once a day it should only count them once.
+//Example
+//Song mountMoose = new Song("Mount Moose", "The Snazzy Moose");
+// day 1
+//mountMoose.howMany(new ArrayList<String>(Arrays.asList("John", "joHN", "carl"))); => 2
+import java.util.ArrayList;
+
+public class Song {
+	
+	    private String title; 
+	    private String author;  
+	    private ArrayList<String> listeners;    
+	   
+	    public Song(String title, String author) {
+	        this.title = title;
+	        this.author = author;
+	        this.listeners = new ArrayList<>(); 
+	         }
+	   
+	    public int howMany(ArrayList<String> a) {
+	    	int count = 0;
+	    
+	    	if (listeners.isEmpty()){
+	    		for (int i = 0; i < a.size(); i++){
+	    			boolean d = false;
+	                for (int j = i + 1; j < a.size(); j++)
+	                    if (a.get(i).equalsIgnoreCase(a.get(j))){
+	                       d = true;
+	                       break; 
+	                     	}
+	                if (d == false) {
+	                	listeners.add(a.get(i));
+	                	count++;
+	                         }
+	    	     }
+	    	}
+	    	else {
+	    			for (int i = 0; i < a.size(); i++) {
+	    				boolean trovato = false;
+	    				for (int j = 0; j < this.listeners.size(); j++)
+	    				    if (a.get(i).equalsIgnoreCase(listeners.get(j))) { 
+	    					       trovato = true;
+	    					       break;
+	    				           }
+	    				if (trovato == false) {
+	    					count++;
+	    					listeners.add(a.get(i));
+	    				    }
+	    			    }
+	    	     }
+	    	return count;   
+        }
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
+		}
+
+		public String getAuthor() {
+			return author;
+		}
+
+		public void setAuthor(String author) {
+			this.author = author;
+		}   
+}
